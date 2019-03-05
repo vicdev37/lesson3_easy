@@ -138,12 +138,12 @@ function chooseExpenses() {
 }
 
 function detectDayBudget() {
-	chooseExpenses();
 	appData.moneyPerDay = (appData.budget / 30).toFixed();
 
 	alert("Ежедневный бюджет: " + appData.moneyPerDay);
 }
-detectDayBudget()
+detectDayBudget();
+chooseExpenses();
 
 
 
@@ -167,12 +167,14 @@ function checkSavings() {
 	if (appData.savings == true) {
 		let save = +prompt("Какова сумма накоплений?"),
 			percent = +prompt("Под какой процент?");
-
+		while (isNaN(save) || save == "" || save == null && isNaN(percent) || percent == "" || percent == null) {
+				save = +prompt("Какова сумма накоплений?", ''),
+				percent = +prompt("Под какой процент?", '');
+		}
 		appData.monthIncome = save/100/12*percent;
 		alert("Доход в месяц с вашего депозита: " + appData.monthIncome);	
 	}
 }
-
 checkSavings();
 
 function chooseOptExpenses() {
@@ -216,4 +218,4 @@ chooseOptExpenses();
 // 	console.log("Я прошел 3й урок")
 // }
 
-// learnJS("JavaScript", done);
+// learnJS("JavaScript", done)
